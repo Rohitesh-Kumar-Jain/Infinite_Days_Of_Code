@@ -45,17 +45,6 @@ class Solution {
         }
         
         Node travel = head2;
-        
-        // while(travel != null) {
-        //     System.out.print(travel.val + " ");
-        //     if (travel.random == null) System.out.print("NULL" + " ");
-        //     else {
-        //         System.out.print(travel.random.val + " ");
-        //     }
-        //     System.out.println();
-        //     travel = travel.next;
-        // }
-        
         head2 = head2.next;
         
         return head2;
