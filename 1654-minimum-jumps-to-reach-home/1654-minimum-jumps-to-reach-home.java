@@ -13,7 +13,7 @@ class Solution {
                 int[] arr = bfs.poll();
                 int cur = arr[0], backs = arr[1];
                 
-                if (no.contains(cur) || cur < 0 || cur > 8000) continue;
+                if (no.contains(cur) || cur < 0 || cur > 6000) continue;
                 if (cur == x) return ans;
                 no.add(cur);
                 
