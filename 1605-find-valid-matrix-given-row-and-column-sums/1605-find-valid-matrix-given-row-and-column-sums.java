@@ -1,27 +1,17 @@
 class Solution {
-    public int[][] restoreMatrix(int[] rowSum, int[] colSum) {
-        int m = rowSum.length;
-        int n = colSum.length;
-        int[][] ans = new int[m][n];
-        
-        int i = 0, j = 0;
-        
-        while(i < m) {
-            
-            while(rowSum[i] > 0) {
-                int val = Math.min(rowSum[i], colSum[j]);
-                ans[i][j] += val;
-                rowSum[i] -= val;
-                colSum[j] -= val;
-                if (rowSum[i] == 0) break;
-                if (colSum[j] == 0) j++;
+    public int[][] restoreMatrix(int[] row, int[] col) {
+        int m = row.length, n = col.length;
+        int[][] A = new int[m][n];
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0 ; j < n; ++j) {
+                A[i][j] = Math.min(row[i], col[j]);
+                row[i] -= A[i][j];
+                col[j] -= A[i][j];
             }
-            
-            i++;
         }
-        
-        return ans;
+        return A;
     }
+        
 } 
  
 
