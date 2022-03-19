@@ -10,8 +10,6 @@ class Solution {
         while(bfs.size() > 0) {
             int k = bfs.size();
             
-            System.out.println(bfs);
-            
             for (int t = 0; t < k; t++) {
                 
                 String cur = bfs.poll();
@@ -25,18 +23,12 @@ class Solution {
                         String st = "";
                         if (i > 0) st = st + cur.substring(0, i); 
                         st = st + ch + cur.substring(i+1);
-                        
-                        // System.out.print(st + " ");
                         if (!seen.contains(st) && valid.contains(st)) bfs.add(st);
                     }
-                    // System.out.println();
                 }
             }
             ans++;
         }
-        
-        // System.out.println(ans + " " + valid);
-        
         return 0;
     }
 }
