@@ -1,27 +1,60 @@
 class Solution {
-    int[] color;
-    int[][] graph;
     public boolean isBipartite(int[][] graph) {
         int n = graph.length;
-        this.color = new int[n];
-        this.graph = graph;
+        DSU dsu = new DSU(n);
         
         for (int i = 0; i < n; i++) {
-            if (color[i] == 0 && dfs(i, 1) == false) return false;
+            if (graph[i].length == 0) continue;
+            int opposite = graph[i][0];
+            for (int node : graph[i]) {
+                if (dsu.isConnected(i, node) == true) return false;
+                dsu.union(opposite, node);
+            }
         }
         
         return true;
     }
     
-    private boolean dfs(int i, int c) {
-        color[i] = c;
+    class DSU {
         
-        for (int node : graph[i]) {
-            if (color[node] == c) return false;
+        int[] root;
+        int[] rank;
+        
+        public DSU(int n) {
+            this.root = new int[n];
+            this.rank = new int[n];
             
-            if (color[node] == 0 && dfs(node, c * (-1)) == false) return false;
+            for (int i = 0; i < n; i++) {
+                root[i] = i;
+                rank[i] = 1;
+            }
         }
         
-        return true;
+        public int find(int x) {
+            if (root[x] == x) return x;
+            return root[x] = find(root[x]);
+        }
+        
+        public void union(int x, int y) {
+            int RootX = find(x);
+            int RootY = find(y);
+            
+            if (RootX == RootY) return;
+            
+            if (rank[RootX] > rank[RootY]) {
+                root[RootY] = RootX;
+                
+            } else if (rank[RootX] < rank[RootY]) {
+                root[RootY] = RootX;
+                
+            } else {
+                root[RootY] = RootX;
+                rank[RootX]++;
+            }
+        }
+        
+        public boolean isConnected(int x, int y) {
+            return find(x) == find(y);
+        }
     }
 }
