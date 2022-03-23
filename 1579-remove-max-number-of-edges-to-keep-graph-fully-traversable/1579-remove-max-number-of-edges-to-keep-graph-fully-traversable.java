@@ -29,16 +29,12 @@ class Solution {
         }
         
         int root = dsu1.find(0);
-        // System.out.println(root);
         for (int i = 1; i < n; i++) {
-            // System.out.print(i + " : " + dsu1.find(i) + "     ");
             if (dsu1.find(i) != root) return -1;
         }
         
         root = dsu2.find(0);
-        // System.out.println(root);
         for (int i = 1; i < n; i++) {
-            // System.out.print(i + " : " + dsu2.find(i) + "     ");
             if (dsu2.find(i) != root) return -1;
         }
         
