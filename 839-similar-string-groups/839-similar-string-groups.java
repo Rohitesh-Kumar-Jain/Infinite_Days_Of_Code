@@ -5,21 +5,14 @@ class Solution {
         
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
-                String s1 = strs[i];
-                String s2 = strs[j];
-                
-                if (isSimilar(s1, s2)) {
-                    // System.out.println(s1 + " " + s2);
+                if (isSimilar(strs[i], strs[j])) {
                     dsu.union(i, j);
                 }
             }
         }
         
         Set<Integer> grps = new HashSet<>();
-        
-        for (int i = 0; i < n; i++) {
-            grps.add(dsu.find(i));
-        }
+        for (int i = 0; i < n; i++) grps.add(dsu.find(i));
         
         return grps.size();
     }
