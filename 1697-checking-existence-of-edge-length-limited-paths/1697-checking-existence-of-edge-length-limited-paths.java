@@ -13,9 +13,6 @@ class Solution {
         boolean[] ans = new boolean[queries.length];
         int j = 0;
         
-        System.out.println(Arrays.deepToString(edgeList));
-        System.out.println(Arrays.deepToString(queries));
-        
         for (int[] q : queries) {
             int limit = q[2];
             
