@@ -15,8 +15,6 @@ class Solution {
         pq.add(new int[]{src, 0, 0});
         
         while(pq.size() > 0) {
-            // for (int[] arr : pq) System.out.print(Arrays.toString(arr) + " ");
-            System.out.println();
             int[] arr = pq.poll();
             int cur = arr[0], d = arr[1], stops = arr[2];
             
