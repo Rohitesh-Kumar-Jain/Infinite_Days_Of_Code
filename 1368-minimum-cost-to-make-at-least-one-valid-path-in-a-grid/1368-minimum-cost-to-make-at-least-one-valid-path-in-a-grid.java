@@ -32,9 +32,8 @@ class Solution {
                 
                 if (dist[r][c][i] > nd) {
                     dist[r][c][i] = nd;
+                    pq.add(new int[]{r, c, nd});
                 }
-                
-                pq.add(new int[]{r, c, nd});
             }
         }
         
