@@ -14,15 +14,11 @@ class Solution {
                 
             } else ans += s;
         }
-        
-        // System.out.println(map);
-        
         return ans;
     }
     
     private Map<String, Integer> helper(int i, String s) {
         Map<String, Integer> map = new HashMap<>();
-        System.out.println(s + " " + s.charAt(i));
         
         while(i < s.length()) {
             
@@ -56,10 +52,6 @@ class Solution {
                 if (mul == 0) mul = 1;
                 map.put(st, map.getOrDefault(st, 0) + mul);
             }
-            
-            // System.out.print(map + " : ");
-            // if (i < s.length()) System.out.print(s.charAt(i));
-            // System.out.println();
         }
         
         return map;
