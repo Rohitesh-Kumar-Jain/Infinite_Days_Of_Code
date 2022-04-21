@@ -21,7 +21,7 @@ class Solution {
                 ans = Math.min(ans, val);
             }
             
-            System.out.println(val + " " + ans);
+            // System.ou t.println(val + " " + ans);
         }
         
         return ans;
@@ -29,10 +29,6 @@ class Solution {
     
     private int dp(int cost, int i) {
         if (cost == target) return cost;
-        
-        // if (cost - target > ans) {
-        //     return Integer.MAX_VALUE;
-        // }
         
         if (m == i) {
             return cost;
