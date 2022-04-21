@@ -22,8 +22,6 @@ class Solution {
         int cur = prop[i][0];
         int curYmax = prop[i][1];
         
-        System.out.println(i + " : " + mx + " " + my + " " + cur + " " + curYmax);
-        
         while(i < n) {
             if (prop[i][0] == cur) {
                 if (my > prop[i][1]) ans++;
