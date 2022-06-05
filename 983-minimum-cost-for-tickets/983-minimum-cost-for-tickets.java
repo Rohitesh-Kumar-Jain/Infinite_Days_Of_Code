@@ -10,7 +10,7 @@ class Solution {
     }
     
     private int dp(int i, int vali) {
-        System.out.println(i + " " + vali);
+        // System.out.println(i + " " + vali);
         if (i == days.length) {
             return 0;
         }
