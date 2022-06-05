@@ -1,33 +1,73 @@
 class TextEditor {
     
-    int cursor;
-    StringBuilder s;
+    Stack<Character> behind = new Stack<>();
+    Stack<Character> ahead = new Stack<>();
 
     public TextEditor() {
-        this.cursor = 0;
-        this.s = new StringBuilder();
+        
     }
     
     public void addText(String text) {
-        s.insert(cursor, text);
-        cursor += text.length();
+        for (int i = 0; i < text.length(); i++) {
+            char ch = text.charAt(i);
+            behind.push(ch);
+        }
     }
     
     public int deleteText(int k) {
-        int oldCursor = cursor;
-        cursor = Math.max(cursor - k, 0);
-        s.delete(cursor, oldCursor);
-        return oldCursor - cursor;
+        int del = 0;
+        while(k > 0 && behind.size() > 0) {
+            behind.pop();
+            del++; k--;
+        }
+        
+        return del;
     }
     
     public String cursorLeft(int k) {
-        cursor = Math.max(0, cursor - k);
-        return s.substring(Math.max(0, cursor - 10), cursor);
+        while(k > 0 && behind.size() > 0) {
+            ahead.push(behind.pop());
+            k--;
+        }
+        
+        Stack<Character> temp = new Stack<>();
+        int i = 0;
+        String s = "";
+        
+        while(i < 10 && behind.size() > 0) {
+            char ch = behind.pop();
+            s = ch + s; i++;
+            temp.push(ch);
+        }
+        
+        while(temp.size() > 0) {
+            behind.push(temp.pop());
+        }
+        
+        return s;
     }
     
     public String cursorRight(int k) {
-        cursor = Math.min(s.length(), cursor + k);
-        return s.substring(Math.max(0, cursor - 10), cursor);
+        while(k > 0 && ahead.size() > 0) {
+            behind.push(ahead.pop());
+            k--;
+        }
+        
+        Stack<Character> temp = new Stack<>();
+        int i = 0;
+        String s = "";
+        
+        while(i < 10 && behind.size() > 0) {
+            char ch = behind.pop();
+            s = ch + s; i++;
+            temp.push(ch);
+        }
+        
+        while(temp.size() > 0) {
+            behind.push(temp.pop());
+        }
+        
+        return s;
     }
 }
 
