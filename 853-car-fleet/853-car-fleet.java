@@ -5,15 +5,18 @@ class Solution {
             list.add(new int[]{pos[i], speed[i]});
         }
         Collections.sort(list, (a, b) -> (b[0] - a[0]));
+        int ans = 0;
         
-        Stack<Double> stack = new Stack<>();
+        double prev = -1;
         
         for (int i = 0; i < speed.length; i++) {
             double val = (double)(target - list.get(i)[0])/list.get(i)[1];
             
-            if (stack.empty() || stack.peek() < val) stack.push(val);
+            if (prev < val) {
+                prev = val; ans++;
+            }
         }
         
-        return stack.size();
+        return ans;
     }
 }
