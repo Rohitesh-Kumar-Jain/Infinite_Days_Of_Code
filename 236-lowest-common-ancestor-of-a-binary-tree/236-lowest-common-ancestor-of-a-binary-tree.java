@@ -19,11 +19,9 @@ class Solution {
         while(i < list1.size() && j < list2.size()) {
             if (list1.get(i).val == list2.get(j).val) {
                 i++; j++;
-            } else {
-                break;
-            }
+                
+            } else break;
         }
-        
         return list1.get(i-1);
     }
     
