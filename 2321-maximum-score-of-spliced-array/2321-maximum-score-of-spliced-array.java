@@ -1,12 +1,10 @@
 class Solution {
 
     public int maximumsSplicedArray(int[] nums1, int[] nums2) {
-        int ans = 0, sum1 = 0, sum2 = 0;
+        int sum1 = 0, sum2 = 0;
 
         for (int i : nums1) sum1 += i;
         for (int i : nums2) sum2 += i;
-
-        ans = Math.max(sum1, sum2);
 
         int first = 0, second = 0, max1 = 0, max2 = 0;
 
@@ -21,7 +19,6 @@ class Solution {
             if (second < 0) second = 0;
         }
 
-        ans = Math.max(sum2 + max2, sum1 + max1);
-        return ans;
+        return Math.max(sum2 + max2, sum1 + max1);
     }
 }
