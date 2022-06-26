@@ -1,38 +1,29 @@
 class Solution {
+
     public int maximumsSplicedArray(int[] nums1, int[] nums2) {
-        int n = nums1.length;
-        int[] pre1 = new int[n + 1];
-        int[] pre2 = new int[n + 1];
-        
-        for (int i = 1; i <= n; i++) {
-            pre1[i] = pre1[i-1] + nums1[i-1];
-            pre2[i] = pre2[i-1] + nums2[i-1];
-        }
-        
-        int op1 = getScore(nums1, pre1, pre2);
-        int op2 = getScore(nums2, pre2, pre1);
-        
-        return Math.max(op1, op2);
-    }
-    
-    private int getScore(int[] nums1, int[] pre1, int[] pre2) {
-        int n = nums1.length;
-        int ans = pre1[n];
-        int left = 0;
-        
-        for (int right = 1; right <= n; right++) {
-            int sum1 = pre1[right] - pre1[left];
-            int sum2 = pre2[right] - pre2[left];
+        int ans = 0, sum1 = 0, sum2 = 0;
+
+        for (int i : nums1) sum1 += i;
+        for (int i : nums2) sum2 += i;
+
+        ans = Math.max(sum1, sum2);
+
+        int first = 0, second = 0, max1 = 0, max2 = 0;
+
+        for (int i = 0; i < nums1.length; i++) {
+            first += (nums2[i] - nums1[i]);
+            second += (nums1[i] - nums2[i]);
             
-            while(sum1 > sum2 && left <= right) {
-                left++;
-                sum1 = pre1[right] - pre1[left];
-                sum2 = pre2[right] - pre2[left];
-            }
+            max1 = Math.max(max1, first);
+            max2 = Math.max(max2, second);
             
-            ans = Math.max(ans, pre1[n] - sum1 + sum2);
+            if (first < 0) first = 0;
+            if (second < 0) second = 0;
         }
-        
+
+        ans = Math.max(ans, sum1 + max1);
+        ans = Math.max(ans, sum2 + max2);
+
         return ans;
     }
 }
