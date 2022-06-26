@@ -21,9 +21,7 @@ class Solution {
             if (second < 0) second = 0;
         }
 
-        ans = Math.max(ans, sum1 + max1);
-        ans = Math.max(ans, sum2 + max2);
-
+        ans = Math.max(sum2 + max2, sum1 + max1);
         return ans;
     }
 }
